@@ -1,5 +1,8 @@
 # ImageSorter
 
+This GUI app allowes you to select a source and a target directory when you start it.
+After that, all JPEG and PNG images will be displayed and you can click on yes or no to determine if the displayed image should be moved to the target directory. There are also keyboard shortcuts (y & n).
+
 ## Project install
 ```
 python3 -m venv .venv

@@ -4,35 +4,35 @@ from tkinter import Tk, Label, Button, filedialog
 from PIL import Image, ImageTk
 
 
-class ImageSorter:
-  def __init__(self, master):
-    self.master = master
+class App:
+  def __init__(self, root):
+    self.root = root
     self.max_width = 1200
     self.max_height = 800
     self.min_width = 800
     self.min_height = 600
-    master.title("Image Sorter")
+    root.title("Image Sorter")
     
-    self.label = Label(master, text="Review the image and choose Yes or No")
+    self.label = Label(root, text="Review the image and choose Yes or No")
     self.label.pack()
     
-    self.image_label = Label(master)
+    self.image_label = Label(root)
     self.image_label.pack()
     
-    self.yes_button = Button(master, text="Yes", command=self.move_image)
+    self.yes_button = Button(root, text="Yes", command=self.move_image)
     self.yes_button.pack(side="left")
-    self.master.bind("<y>", self.move_image)
+    self.root.bind("<y>", self.move_image)
     
-    self.no_button = Button(master, text="No", command=self.next_image)
+    self.no_button = Button(root, text="No", command=self.next_image)
     self.no_button.pack(side="right")
-    self.master.bind("<n>", self.next_image)
+    self.root.bind("<n>", self.next_image)
     
     self.source_dir = filedialog.askdirectory(title="Select Source Directory")
     self.dest_dir = filedialog.askdirectory(title="Select Destination Directory")
 
     if not self.source_dir or not self.dest_dir:
       self.label.config(text="Please select source and destination directories.")
-      return self.master.destroy()
+      return self.root.destroy()
     
     self.image_files = [f for f in os.listdir(self.source_dir) if f.endswith(('jpg', 'png', 'jpeg'))]
     self.current_image = None
@@ -60,5 +60,5 @@ class ImageSorter:
 
 
 root = Tk()
-image_sorter = ImageSorter(root)
+app = App(root)
 root.mainloop()
